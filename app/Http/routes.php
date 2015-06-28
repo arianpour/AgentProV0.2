@@ -82,6 +82,22 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+/**
+ * Property controller route protected by auth middleware
+ * for user protections only .
+ * the Property controller functions:
+ * index,create,store,edit,update,show
+ *
+ * */
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('address', 'AddressController@index');
+    Route::get('address/create', 'AddressController@create');
+    Route::post('address/store', 'AddressController@store');
+    Route::get('address/edit', 'AddressController@edit');
+    Route::post('address/update', 'AddressController@update');
+    Route::get('address/{$id}', 'AddressController@show');
+
+});
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

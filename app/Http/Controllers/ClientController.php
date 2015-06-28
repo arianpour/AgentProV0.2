@@ -2,8 +2,11 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Client;
+use Auth;
+use Session;
 use Illuminate\Http\Request;
+
 
 class ClientController extends Controller {
 
@@ -25,6 +28,7 @@ class ClientController extends Controller {
 	 */
 	public function create()
 	{
+
 		return view('addClient');
 	}
 
@@ -36,6 +40,7 @@ class ClientController extends Controller {
      */
 	public function store(Requests\StoreaddClientPostRequest $request)
 	{
+
         $person = new Client(array(
             'firstName'     =>  $request->firstName,
             'lastName'      =>  $request->lastName,
@@ -43,15 +48,15 @@ class ClientController extends Controller {
             'nationality'   =>  $request->nationality,
             'email'         =>  $request->email,
             'idNumber'      =>  $request->idNumber,
-            'phoneNo'       =>  $request->phoneNo,
+            'phoneNo'       =>  $request->phone,
             'role'          =>  'tenant'
 
         ));
 
         $person->save();
-        Session::put('clientInsertedId', $person->id);
-
-        return redirect('client/Address_create');
+        Session::put('ClientInsertedId', $person->id);
+        Session::put('AddRole', 'client');
+        return redirect('address/create');
 	}
 
 	/**
@@ -62,7 +67,7 @@ class ClientController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        return $id;
 	}
 
 	/**

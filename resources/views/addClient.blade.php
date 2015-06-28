@@ -24,6 +24,10 @@
 	{!! Form::text('idNumber', '', ['class' => 'field']) !!}
 	{!! Form::label('Nationality', 'Nationality', ['class' => 'control-label']) !!}
 	{!! Form::select('nationality', ['Malaysia','Singapore'] , 1 , ['class' => 'field']) !!}
+	{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+	{!! Form::email('email', 'Email', ['class' => 'form-control']) !!}
+	{!! Form::label('phone', 'Phone no', ['class' => 'control-label']) !!}
+	{!! Form::text('phone', '', ['class' => 'field']) !!}
 	{!! Form::submit('Submit', ['class' => 'button']) !!}
 
 	{!! Form::close() !!}
