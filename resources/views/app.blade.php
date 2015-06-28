@@ -47,6 +47,8 @@
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 								<li><a href="{{url('client/create')}}">Add Client</a> </li>
 								<li><a href="{{url('client')}}">Client list</a></li>
+								<li><a href="{{url('owner/create')}}">Add Owner</a> </li>
+								<li><a href="{{url('owner')}}">Owner list</a></li>
 							</ul>
 						</li>
 					@endif

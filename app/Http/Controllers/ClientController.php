@@ -3,8 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Client;
+use App\Http\Requests\StoreaddClientPostRequest;
+use App\User;
 use Auth;
 use Session;
+
 use Illuminate\Http\Request;
 
 
@@ -17,7 +20,8 @@ class ClientController extends Controller {
 	 */
 	public function index()
 	{
-        $clientList=User::findOrFail(Auth::user()->id)->client;
+        $clientList=User::findOrFail(Auth::user()->id)->client->where('role','tenant');
+
         return view('clients',compact('clientList'));
 	}
 
@@ -35,10 +39,10 @@ class ClientController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param Requests\StoreaddClientPostRequest $request
+     * @param StoreaddClientPostRequest $request
      * @return Response
      */
-	public function store(Requests\StoreaddClientPostRequest $request)
+	public function store(StoreaddClientPostRequest $request)
 	{
 
         $person = new Client(array(

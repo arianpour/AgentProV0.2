@@ -24,10 +24,10 @@ class StoreAddressPostRequest extends Request {
 		return [
             'unit'     =>'required|max:100',
             'street'   =>'required|max:300',
-            'postCode'  =>'required|max:50',
-            'city'      =>'required|max50',
-            'state'     =>'required|max50',
-            'country'   =>'required|max50',
+            'postcode'  =>'required|max:50',
+            'city'      =>'required|max:50',
+            'state'     =>'required|max:50',
+            'country'   =>'required|max:50',
         ];
 	}
 

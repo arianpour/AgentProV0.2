@@ -53,6 +53,7 @@ class AddressController extends Controller {
             case "client":
                 $client= Client::find(Session::get('ClientInsertedId'));
                 $client->addresses()->save($address);
+                break;
             case "property":
                 $property=Property::find(Session::get('PropertyInsertedId'));
                 $property->addresses()->save($address);

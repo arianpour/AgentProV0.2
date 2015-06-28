@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreaddClientPostRequest;
 use App\Http\Requests\StoreaddClientPostRequestPostRequest;
 use App\Http\Requests\StoreAddOwnerPostRequest;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller {
 
@@ -18,8 +20,8 @@ class OwnerController extends Controller {
 	public function index()
 	{
         //TODO: change it to show the owner lists
-        $clientList=User::findOrFail(Auth::user()->id)->client;
-        return view('clients',compact('clientList'));
+        $clientList=User::findOrFail(Auth::user()->id)->client->where('role','owner');
+        return view('owners',compact('clientList'));
 	}
 
 	/**

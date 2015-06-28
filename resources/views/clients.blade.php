@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 
-	@if(isset($clientList))
+	@if(!$clientList->isEmpty())
 		@foreach($clientList as $client)
 		<a href={{action('ClientController@show',$client->id)}}>
 			<ul>
