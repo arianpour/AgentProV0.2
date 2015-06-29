@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Address;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Client;
@@ -56,10 +57,10 @@ class ClientController extends Controller {
             'role'          =>  'tenant'
 
         ));
-
         $person->save();
         Session::put('ClientInsertedId', $person->id);
         Session::put('AddRole', 'client');
+        Session::flash('flash_message', 'Client successfully added! Need to add the Address');
         return redirect('address/create');
 	}
 
@@ -71,7 +72,10 @@ class ClientController extends Controller {
 	 */
 	public function show($id)
 	{
-        return $id;
+
+        $client=Client::find($id);
+        $address=$client->addresses()->get();
+        return view('showClient',compact('client','address'));
 	}
 
 	/**
@@ -82,8 +86,10 @@ class ClientController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
-	}
+        $client=Client::findOrFail($id);
+        return view('editClient',compact('client'));
+
+    }
 
 	/**
 	 * Update the specified resource in storage.

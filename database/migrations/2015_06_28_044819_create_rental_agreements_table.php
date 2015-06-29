@@ -18,6 +18,7 @@ class CreateRentalAgreementsTable extends Migration {
             $table->integer('client_id');
             $table->integer('owner_id');
             $table->integer('property_id');
+            $table->integer('user_id');
             $table->date('dateOfAgreement');
             $table->date('commencingDate');
             $table->date('expireDate');

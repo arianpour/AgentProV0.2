@@ -1,7 +1,9 @@
 <?php namespace App\Http\Controllers;
 
+use App\Client;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
 
 use App\Http\Requests\StoreaddClientPostRequest;
 use App\Http\Requests\StoreaddClientPostRequestPostRequest;
@@ -56,6 +58,8 @@ class OwnerController extends Controller {
         $person->save();
         Session::put('ClientInsertedId', $person->id);
         Session::put('AddRole', 'client');
+        Session::flash('flash_message', 'Owner successfully added! Need to add the Address');
+
         return redirect('address/create');
     }
 

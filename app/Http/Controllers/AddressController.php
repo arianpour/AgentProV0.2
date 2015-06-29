@@ -59,8 +59,9 @@ class AddressController extends Controller {
                 $property->addresses()->save($address);
                 break;
         }
+        Session::flash('flash_message', 'Address successfully added! ');
 
-        return redirect('rentalagreement/create');	}
+        return redirect('home');	}
 
 	/**
 	 * Display the specified resource.

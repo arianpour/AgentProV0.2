@@ -3,14 +3,20 @@
 
 	@if(!$clientList->isEmpty())
 		@foreach($clientList as $client)
-		<a href={{action('ClientController@show',$client->id)}}>
+
 			<ul>
 				{{$client->firstName}} {{$client->lastName}}
+				<p>{{ $client->idNumber}}</p>
+				<p>
+					<a href="{{ action('ClientController@show', $client->id) }}" class="btn btn-info">View Client</a>
+					<a href="{{ action('ClientController@edit', $client->id) }}" class="btn btn-primary">Edit Client</a>
+				</p>
+				<hr>
 			</ul>
-		</a>
+
 	@endforeach
 	@else
-	<h1> No client added yet</h1>
+	<h1> No client added yet , please add new Client</h1>
 	@endif
 
 @endsection
