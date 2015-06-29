@@ -24,13 +24,13 @@ Route::get('home', 'HomeController@index');
  *
  * */
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('client', 'ClientController@index');
-    Route::get('client/create', 'ClientController@create');
-    Route::post('client/store', 'ClientController@store');
-    Route::get('client/edit/{id}', 'ClientController@edit');
-    Route::post('client/update', 'ClientController@update');
-    Route::get('client/delete/{id}', 'ClientController@delete');
-    Route::get('client/{id}', 'ClientController@show');
+    Route::get('client'                 , 'ClientController@index');
+    Route::get('client/create'          , 'ClientController@create');
+    Route::post('client/store'          , 'ClientController@store');
+    Route::get('client/edit/{id}'       , 'ClientController@edit');
+    Route::post('client/update/{id}'    , 'ClientController@update');
+    Route::get('client/delete/{id}'     , 'ClientController@destroy');
+    Route::get('client/{id}'            , 'ClientController@show');
 
 });
 /**
@@ -41,12 +41,13 @@ Route::group(['middleware' => 'auth'], function () {
  *
  * */
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('owner', 'OwnerController@index');
-    Route::get('owner/create', 'OwnerController@create');
-    Route::post('owner/store', 'OwnerController@store');
-    Route::get('owner/edit', 'OwnerController@edit');
-    Route::post('owner/update', 'OwnerController@update');
-    Route::get('owner/{id}', 'OwnerController@show');
+    Route::get('owner'              , 'OwnerController@index');
+    Route::get('owner/create'       , 'OwnerController@create');
+    Route::post('owner/store'   , 'OwnerController@store');
+    Route::get('owner/edit/{id}'     , 'OwnerController@edit');
+    Route::post('owner/update/{id}'  , 'OwnerController@update');
+    Route::get('owner/delete/{id}', 'OwnerController@destroy');
+    Route::get('owner/{id}'     , 'OwnerController@show');
 
 });
 /**
@@ -57,12 +58,12 @@ Route::group(['middleware' => 'auth'], function () {
  *
  * */
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('rentalagreement', 'RentalAgreementController@index');
-    Route::get('rentalagreement/create', 'RentalAgreementController@create');
-    Route::post('rentalagreement/store', 'RentalAgreementController@store');
-    Route::get('rentalagreement/edit', 'RentalAgreementController@edit');
-    Route::post('rentalagreement/update', 'RentalAgreementController@update');
-    Route::get('rentalagreement/{id}', 'RentalAgreementController@show');
+    Route::get('rentalagreement'            , 'RentalAgreementController@index');
+    Route::get('rentalagreement/create'     , 'RentalAgreementController@create');
+    Route::post('rentalagreement/store'     , 'RentalAgreementController@store');
+    Route::get('rentalagreement/edit'       , 'RentalAgreementController@edit');
+    Route::post('rentalagreement/update'    , 'RentalAgreementController@update');
+    Route::get('rentalagreement/{id}'       , 'RentalAgreementController@show');
 
 });
 
@@ -74,12 +75,12 @@ Route::group(['middleware' => 'auth'], function () {
  *
  * */
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('property', 'PropertyController@index');
-    Route::get('property/create', 'PropertyController@create');
-    Route::post('property/store', 'PropertyController@store');
-    Route::get('property/edit', 'PropertyController@edit');
-    Route::post('property/update', 'PropertyController@update');
-    Route::get('property/{id}', 'PropertyController@show');
+    Route::get('property'           , 'PropertyController@index');
+    Route::get('property/create'    , 'PropertyController@create');
+    Route::post('property/store'    , 'PropertyController@store');
+    Route::get('property/edit'      , 'PropertyController@edit');
+    Route::post('property/update'   , 'PropertyController@update');
+    Route::get('property/{id}'      , 'PropertyController@show');
 
 });
 
@@ -91,12 +92,13 @@ Route::group(['middleware' => 'auth'], function () {
  *
  * */
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('address', 'AddressController@index');
-    Route::get('address/create', 'AddressController@create');
-    Route::post('address/store', 'AddressController@store');
-    Route::get('address/edit', 'AddressController@edit');
-    Route::post('address/update', 'AddressController@update');
-    Route::get('address/{id}', 'AddressController@show');
+    Route::get('address'                , 'AddressController@index');
+    Route::get('address/create'         , 'AddressController@create');
+    Route::post('address/store'         , 'AddressController@store');
+    Route::get('address/edit/{id}'      , 'AddressController@edit');
+    Route::post('address/update/{id}'   , 'AddressController@update');
+    Route::get('address/destroy/{id}'   , 'AddressController@destroy');
+    Route::get('address/{id}'           , 'AddressController@show');
 
 });
 

@@ -19,7 +19,7 @@
 	{!! Form::label('street', 'street', ['class' => 'control-label']) !!}
 	{!! Form::text('street', '', ['class' => 'field']) !!}
 	{!! Form::label('postcode', 'post Code', ['class' => 'control-label']) !!}
-	{!! Form::text('postcode', '', ['class' => 'field']) !!}
+	{!! Form::text('postCode', '', ['class' => 'field']) !!}
 	{!! Form::label('city', 'City', ['class' => 'control-label']) !!}
 	{!! Form::text('city', '', ['class' => 'field']) !!}
 	{!! Form::label('state', 'state', ['class' => 'control-label']) !!}

@@ -44,7 +44,7 @@ class AddressController extends Controller {
         $address= new Address(array(
             'unit'=> $request->unit,
             'street'=>$request->street,
-            'postCode'=>$request->postcode,
+            'postCode'=>$request->postCode,
             'city'=>$request->city,
             'state'=>$request->state,
             'country'=>$request->country,
@@ -82,18 +82,27 @@ class AddressController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $client=Client::findOrFail($id);
+
+        $addressId=$client->addresses()->first()->id;
+        $address=Address::findOrFail($addressId);
+        return view('editAddress',compact('address','client'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @param StoreAddressPostRequest $request
+     * @return Response
+     */
+	public function update($id,StoreAddressPostRequest $request)
 	{
-		//
+        $address=Address::findOrFail($id);
+        $input=$request->all();
+        $address->fill($input)->save();
+        Session::flash('flash_message', 'Address successfully Updated!');
+        return redirect()->back();
 	}
 
 	/**
@@ -104,7 +113,13 @@ class AddressController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        $address = Address::findOrFail($id);
+
+        $address->delete();
+
+        Session::flash('flash_message', 'Address successfully deleted!');
+
+        return redirect()->action('ClientController@index');
 	}
 
 }

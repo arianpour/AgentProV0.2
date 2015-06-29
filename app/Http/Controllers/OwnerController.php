@@ -51,7 +51,7 @@ class OwnerController extends Controller {
             'nationality'   =>  $request->nationality,
             'email'         =>  $request->email,
             'idNumber'      =>  $request->idNumber,
-            'phoneNo'       =>  $request->phone,
+            'phone'       =>  $request->phoneNo,
             'role'          =>  'owner'
 
         ));
@@ -71,7 +71,9 @@ class OwnerController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $owner=Client::find($id);
+        $address=$owner->addresses()->get();
+        return view('showOwner',compact('owner','address'));
 	}
 
 	/**
@@ -82,18 +84,24 @@ class OwnerController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $owner=Client::findOrFail($id);
+        return view('editOwner',compact('owner'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @param StoreaddClientPostRequest $request
+     * @return Response
+     */
+	public function update($id,StoreaddClientPostRequest $request)
 	{
-		//
+		$owner=Client::findOrFail($id);
+        $input=$request->all();
+        $owner->fill($input)->save();
+        Session::flash('flash_message', 'Owner successfully Updated!');
+        return redirect()->back();
 	}
 
 	/**
@@ -104,7 +112,14 @@ class OwnerController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
-	}
+        $owner = Client::findOrFail($id);
+
+        $owner->delete();
+        //TODO: have to remove the address too
+        Session::flash('flash_message', 'Owner successfully deleted!');
+
+        return redirect()->action('OwnerController@index');
+
+    }
 
 }

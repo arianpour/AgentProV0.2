@@ -26,7 +26,7 @@ class StoreaddClientPostRequest extends Request {
             'lastName'      =>'required|max:150',
             'idNumber'      =>'required|max:50',
             'nationality'   =>'required|max:100',
-            'phone'         =>'required|max:20',
+            'phoneNo'       =>'required|max:20',
             'email'         =>'required|max:100'
         ];
 	}

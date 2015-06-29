@@ -53,7 +53,7 @@ class ClientController extends Controller {
             'nationality'   =>  $request->nationality,
             'email'         =>  $request->email,
             'idNumber'      =>  $request->idNumber,
-            'phoneNo'       =>  $request->phone,
+            'phoneNo'       =>  $request->phoneNo,
             'role'          =>  'tenant'
 
         ));
@@ -91,15 +91,20 @@ class ClientController extends Controller {
 
     }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @param StoreaddClientPostRequest $request
+     * @return Response
+     */
+	public function update($id,StoreaddClientPostRequest $request)
 	{
-		//
+		$client=Client::findOrFail($id);
+        $input=$request->all();
+        $client->fill($input)->save();
+        Session::flash('flash_message', 'Client successfully Updated!');
+        return redirect()->back();
 	}
 
 	/**
@@ -110,7 +115,13 @@ class ClientController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        $client = Client::findOrFail($id);
+
+        $client->delete();
+        //TODO: have to remove the address too
+        Session::flash('flash_message', 'Client successfully deleted!');
+
+        return redirect()->action('ClientController@index');
 	}
 
 }
