@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\BankDetail;
+use App\Client;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -38,11 +39,11 @@ class BankDetailController extends Controller {
      */
 	public function store(StoreBankDetailPostRequest $request)
 	{
-
         $bank = new BankDetail(array(
             'bankName'     =>  $request->bankName,
             'accountNo'    =>  $request->accountNo,
-            'client_id'    => Session::get('clientInsertedId'),
+
+            'client_id'    => Session::get('ClientInsertedId'),
 
         ));
         $bank->save();
@@ -69,18 +70,27 @@ class BankDetailController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $client=Client::findOrFail($id);
+
+        $bankDetailId=$client->bankdetails()->first()->id;
+        $bankDetail=BankDetail::findOrFail($bankDetailId);
+        return view('editBankDetail',compact('bankDetail','client'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @param StoreBankDetailPostRequest $request
+     * @return Response
+     */
+	public function update($id,StoreBankDetailPostRequest $request)
 	{
-		//
+        $bankdetail=BankDetail::findOrFail($id);
+        $input=$request->all();
+        $bankdetail->fill($input)->save();
+        Session::flash('flash_message', 'Bank Details successfully Updated!');
+        return redirect()->back();
 	}
 
 	/**

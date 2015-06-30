@@ -10,7 +10,7 @@ class BankDetail extends Model {
      * @var array
      */
 
-    protected $fillable = ['bankName','accountNo'];
+    protected $fillable = ['bankName','accountNo','client_id'];
 
     public function client(){
         return $this->belongsTo('App\Client');

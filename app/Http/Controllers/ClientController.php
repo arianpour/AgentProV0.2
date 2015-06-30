@@ -117,8 +117,9 @@ class ClientController extends Controller {
 	{
         $client = Client::findOrFail($id);
 
+        $client->addresses()->delete();
         $client->delete();
-        //TODO: have to remove the address too
+
         Session::flash('flash_message', 'Client successfully deleted!');
 
         return redirect()->action('ClientController@index');

@@ -51,7 +51,7 @@ class OwnerController extends Controller {
             'nationality'   =>  $request->nationality,
             'email'         =>  $request->email,
             'idNumber'      =>  $request->idNumber,
-            'phone'       =>  $request->phoneNo,
+            'phoneNo'         =>  $request->phoneNo,
             'role'          =>  'owner'
 
         ));
@@ -73,7 +73,8 @@ class OwnerController extends Controller {
 	{
         $owner=Client::find($id);
         $address=$owner->addresses()->get();
-        return view('showOwner',compact('owner','address'));
+        $bankDetails=$owner->bankDetails()->get();
+        return view('showOwner',compact('owner','address','bankDetails'));
 	}
 
 	/**
@@ -113,9 +114,10 @@ class OwnerController extends Controller {
 	public function destroy($id)
 	{
         $owner = Client::findOrFail($id);
-
+        $owner->addresses()->delete();
+        $owner->bankDetails()->delete();
         $owner->delete();
-        //TODO: have to remove the address too
+
         Session::flash('flash_message', 'Owner successfully deleted!');
 
         return redirect()->action('OwnerController@index');

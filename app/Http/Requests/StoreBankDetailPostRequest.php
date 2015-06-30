@@ -11,7 +11,7 @@ class StoreBankDetailPostRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -22,7 +22,9 @@ class StoreBankDetailPostRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+
+            'bankName'=>'required|max:50',
+            'accountNo'=>'required|max:50'
 		];
 	}
 

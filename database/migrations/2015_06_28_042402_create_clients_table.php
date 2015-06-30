@@ -18,8 +18,8 @@ class CreateClientsTable extends Migration {
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email');
-            $table->integer('phoneNo');
-            $table->integer('idNumber');
+            $table->string('phoneNo');
+            $table->string('idNumber');
             $table->string('nationality');
             $table->string('role');
             $table->string('user_id');

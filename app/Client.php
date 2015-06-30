@@ -22,7 +22,7 @@ class Client extends Model {
     public function addresses(){
         return $this->morphOne('App\Address','addressable');
     }
-    public function bankdetail(){
+    public function bankDetails(){
         return $this->hasMany('App\BankDetail');
     }
     public function renalAgreement(){
