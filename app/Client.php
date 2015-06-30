@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model {
 
 
-    protected $fillable = ['firstName','lastName','email','phoneNo',
+    protected $fillable = ['name','email','phoneNo',
     'idNumber','nationality','role','user_id'];
 
     public function user(){
@@ -18,8 +18,7 @@ class Client extends Model {
     public function property(){
         return $this->hasMany('App\Property');
     }
-
-    public function addresses(){
+   public function addresses(){
         return $this->morphOne('App\Address','addressable');
     }
     public function bankDetails(){

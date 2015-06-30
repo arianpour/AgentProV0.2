@@ -45,13 +45,12 @@ class OwnerController extends Controller {
 	public function store(StoreaddClientPostRequest $request)
 	{
         $person = new Client(array(
-            'firstName'     =>  $request->firstName,
-            'lastName'      =>  $request->lastName,
+            'name'     =>  $request->name,
             'user_id'       =>  Auth::user()->id,
             'nationality'   =>  $request->nationality,
             'email'         =>  $request->email,
             'idNumber'      =>  $request->idNumber,
-            'phoneNo'         =>  $request->phoneNo,
+            'phoneNo'       =>  $request->phoneNo,
             'role'          =>  'owner'
 
         ));

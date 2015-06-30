@@ -49,6 +49,8 @@
 								<li><a href="{{url('client')}}">Client list</a></li>
 								<li><a href="{{url('owner/create')}}">Add Owner</a> </li>
 								<li><a href="{{url('owner')}}">Owner list</a></li>
+								<li><a href="{{url('property/create')}}">Property Add</a></li>
+								<li><a href="{{url('property')}}">Property List</a></li>
 							</ul>
 						</li>
 					@endif

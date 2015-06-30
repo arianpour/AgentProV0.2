@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class StoreaddClientPostRequest extends Request {
+class StoreAddPropertyPostRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -21,13 +21,9 @@ class StoreaddClientPostRequest extends Request {
 	 */
 	public function rules()
 	{
-        return [
-            'name'     =>'required|max:150',
-            'idNumber'      =>'required|max:50',
-            'nationality'   =>'required|max:100',
-            'phoneNo'       =>'required|max:20',
-            'email'         =>'required|max:100'
-        ];
+		return [
+			//
+		];
 	}
 
 }

@@ -15,10 +15,9 @@
 	['action' => ['OwnerController@update', $owner->id],
 	'method' => 'post'])
 	!!}
-	{!! Form::label('firstName', 'First Name', ['class' => 'control-label']) !!}
-	{!! Form::text('firstName', null, ['class' => 'field']) !!}
-	{!! Form::label('LastName', 'LastName', ['class' => 'control-label']) !!}
-	{!! Form::text('lastName', null, ['class' => 'field']) !!}
+	{!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
+	{!! Form::text('name', null, ['class' => 'field']) !!}
+
 	{!! Form::label('idNumber', 'IC/ passport No', ['class' => 'control-label']) !!}
 	{!! Form::text('idNumber', null, ['class' => 'field']) !!}
 	{!! Form::label('Nationality', 'Nationality', ['class' => 'control-label']) !!}

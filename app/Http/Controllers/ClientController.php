@@ -47,8 +47,7 @@ class ClientController extends Controller {
 	{
 
         $person = new Client(array(
-            'firstName'     =>  $request->firstName,
-            'lastName'      =>  $request->lastName,
+            'name'     =>  $request->name,
             'user_id'       =>  Auth::user()->id,
             'nationality'   =>  $request->nationality,
             'email'         =>  $request->email,

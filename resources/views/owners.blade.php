@@ -3,13 +3,18 @@
 
 
 	@if(!$clientList->isEmpty())
-
 		@foreach($clientList as $client)
-			<a href={{action('OwnerController@show',$client->id)}}>
-				<ul>
-					{{$client->firstName}} {{$client->lastName}}
-				</ul>
-			</a>
+
+			<ul>
+			{{$client->name}}
+				<p>{{ $client->idNumber}}</p>
+				<p>
+					<a href="{{ action('OwnerController@show', $client->id) }}" class="btn btn-info">View Owner</a>
+					<a href="{{ action('OwnerController@edit', $client->id) }}" class="btn btn-primary">Edit Owner</a>
+				</p>
+				<hr>
+			</ul>
+
 		@endforeach
 	@else
 		<h1> No Owner added yet</h1>

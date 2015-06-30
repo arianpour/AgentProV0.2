@@ -16,7 +16,6 @@ class CreatePropertiesTable extends Migration {
 		{
 			$table->increments('id');
             $table->integer('client_id');
-
 			$table->timestamps();
 		});
 	}

@@ -16,10 +16,9 @@
 
 
 	{!! Form::open(['action' => 'OwnerController@store', 'method' => 'post']) !!}
-	{!! Form::label('firstName', 'First Name', ['class' => 'control-label']) !!}
-	{!! Form::text('firstName', '', ['class' => 'field']) !!}
-	{!! Form::label('LastName', 'LastName', ['class' => 'control-label']) !!}
-	{!! Form::text('lastName', '', ['class' => 'field']) !!}
+	{!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
+	{!! Form::text('name', '', ['class' => 'field']) !!}
+
 	{!! Form::label('idNumber', 'IC/ passport No', ['class' => 'control-label']) !!}
 	{!! Form::text('idNumber', '', ['class' => 'field']) !!}
 	{!! Form::label('Nationality', 'Nationality', ['class' => 'control-label']) !!}

@@ -5,7 +5,8 @@
 		@foreach($clientList as $client)
 
 			<ul>
-				{{$client->firstName}} {{$client->lastName}}
+
+				{{$client->name}}
 				<p>{{ $client->idNumber}}</p>
 				<p>
 					<a href="{{ action('ClientController@show', $client->id) }}" class="btn btn-info">View Client</a>

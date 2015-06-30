@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-	<h1>{{ $client->firstName }} {{$client->lastName}}</h1>
+	<h1>{{ $client->name }}</h1>
 
 		<p>IC / Passport No: {{ $client->idNumber }} </p>
 		<p>Email: {{ $client->email }} </p>
