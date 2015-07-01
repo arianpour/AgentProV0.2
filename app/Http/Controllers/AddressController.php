@@ -53,10 +53,14 @@ class AddressController extends Controller {
             case "client":
                 $client= Client::find(Session::get('ClientInsertedId'));
                 $client->addresses()->save($address);
+                Session::flash('flash_message', 'Address successfully added! ');
+                return redirect()->action('PropertyController@store', Session::get('ClientInsertedId'));
                 break;
             case "property":
                 $property=Property::find(Session::get('PropertyInsertedId'));
                 $property->addresses()->save($address);
+                return redirect()->action('OwnerController@index');
+
                 break;
         }
         Session::flash('flash_message', 'Address successfully added! ');
@@ -102,7 +106,8 @@ class AddressController extends Controller {
         $input=$request->all();
         $address->fill($input)->save();
         Session::flash('flash_message', 'Address successfully Updated!');
-        return redirect()->back();
+
+        return redirect()->action('OwnerController@index');
 	}
 
 	/**

@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 
-	<h1>Editing " {{ $client->name }}  "</h1>
+	<h1>Editing property "</h1>
 	<!--TODO: fix the return page by if the pages redirect from owner,Client
 	or property goes back to their listing -->
 	<p class="lead">Edit and save this Address below.</p>

@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
-	<h1>Editing " {{ $owner->firstName }} {{ $owner->lastName }} "</h1>
-	<p class="lead">Edit and save this Client below, or <a href="{{ action('OwnerController@index') }}">go back to all tasks.</a></p>
+	<h1>Editing " {{ $owner->name }} "</h1>
+	<p class="lead">Edit and save this Client below, or <a href="{{ action('OwnerController@index') }}">go back to all owner.</a></p>
 	<hr>
 	@if($errors->any())
 		<div class="alert alert-danger">

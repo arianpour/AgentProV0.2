@@ -96,8 +96,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('property'           , 'PropertyController@index');
     Route::get('property/create'    , 'PropertyController@create');
     Route::get('property/store/{id}', 'PropertyController@store');
-    Route::get('property/edit'      , 'PropertyController@edit');
-    Route::post('property/update'   , 'PropertyController@update');
+    Route::get('property/edit/{id}' , 'PropertyController@edit');
+    Route::post('property/update/{id}'   , 'PropertyController@update');
+    Route::get('property/destroy/{id}'   , 'PropertyController@destroy');
+
     Route::get('property/{id}'      , 'PropertyController@show');
 
 });

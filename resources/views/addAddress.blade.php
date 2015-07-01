@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-	<h1>Add The Address</h1>
+	<h1>{{Session::get('addressMessage')}}</h1>
 
 	<hr/>
 

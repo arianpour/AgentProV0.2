@@ -3,6 +3,7 @@
 use App\Client;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Property;
 use Session;
 
 use App\Http\Requests\StoreaddClientPostRequest;
@@ -59,7 +60,7 @@ class OwnerController extends Controller {
         Session::put('AddRole', 'client');
         Session::flash('flash_message', 'Owner successfully added! Need to add the Address');
         return redirect('bankDetail/create');
-        //return redirect('address/create');
+
     }
 
 	/**
@@ -70,10 +71,18 @@ class OwnerController extends Controller {
 	 */
 	public function show($id)
 	{
+        $property=array();
         $owner=Client::find($id);
         $address=$owner->addresses()->get();
         $bankDetails=$owner->bankDetails()->get();
-        return view('showOwner',compact('owner','address','bankDetails'));
+        $propertyd=$owner->property()->get();
+            foreach($propertyd as $item){
+                array_push($property, $item->addresses()->get());
+            }
+
+
+
+        return view('showOwner',compact('owner','address','bankDetails','property'));
 	}
 
 	/**
@@ -101,6 +110,8 @@ class OwnerController extends Controller {
         $input=$request->all();
         $owner->fill($input)->save();
         Session::flash('flash_message', 'Owner successfully Updated!');
+        Session::put('addressMessage', 'Update Owner Details');
+
         return redirect()->back();
 	}
 
@@ -115,10 +126,13 @@ class OwnerController extends Controller {
         $owner = Client::findOrFail($id);
         $owner->addresses()->delete();
         $owner->bankDetails()->delete();
+        $propertyd=$owner->property()->get();
+        foreach($propertyd as $item){
+            $item->addresses()->delete();
+        }
+        $owner->property()->delete();
         $owner->delete();
-
         Session::flash('flash_message', 'Owner successfully deleted!');
-
         return redirect()->action('OwnerController@index');
 
     }

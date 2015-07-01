@@ -48,6 +48,7 @@ class BankDetailController extends Controller {
         ));
         $bank->save();
         Session::flash('flash_message', 'Bank details successfully added! Need to add the Address');
+        Session::put('addressMessage', 'New Address for Owner');
         return redirect('address/create');
 	}
 

@@ -27,4 +27,5 @@ class Client extends Model {
     public function renalAgreement(){
         return $this->hasMany('App\RentalAgreement');
     }
+
 }

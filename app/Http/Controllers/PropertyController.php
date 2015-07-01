@@ -56,6 +56,8 @@ class PropertyController extends Controller {
         Session::put('AddRole', 'property');
         Session::put('PropertyInsertedId', $property->id);
         Session::flash('flash_message', 'Add Property Address! ');
+        Session::put('addressMessage', 'New Address for property');
+
         return redirect('address/create');
 
 	}
@@ -79,7 +81,10 @@ class PropertyController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $address=Address::findOrFail($id);
+       // $address=Address::findOrFail($address->id);
+
+        return view('editProperty',compact('address'));
 	}
 
 	/**
@@ -101,7 +106,13 @@ class PropertyController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$address=Address::find($id);
+        $property=Property::find($address->addressable_id);
+        $property->delete();
+
+        $address->delete();
+        return redirect()->back();
+
 	}
 
 }
