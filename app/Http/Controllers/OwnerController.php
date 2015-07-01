@@ -57,7 +57,7 @@ class OwnerController extends Controller {
         ));
         $person->save();
         Session::put('ClientInsertedId', $person->id);
-        Session::put('AddRole', 'client');
+        Session::put('AddRole', 'owner');
         Session::flash('flash_message', 'Owner successfully added! Need to add the Address');
         return redirect('bankDetail/create');
 

@@ -1,8 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\Client;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAddRAgreementStepOnePostRequest;
 use App\Http\Requests\StoreAddRentalAgreementPostRequest;
+use App\Property;
 use App\RentalAgreement;
 use Auth;
 use App\User;
@@ -32,10 +35,31 @@ class RentalAgreementController extends Controller {
 	public function create()
 	{
 
-		return view('addAgreement');
+        $clientList=User::findOrFail(Auth::user()->id)->client->where('role','tenant');
+        $ownerList=User::findOrFail(Auth::user()->id)->client->where('role','owner');
+
+
+		return view('addAgreementStepOne',compact('clientList','ownerList'));
 	}
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param StoreAddRAgreementStepOnePostRequest $request
+     * @return Response
+     */
+    public function stepOne(StoreAddRAgreementStepOnePostRequest $request)
+    {
+        //TODO: have to complete
+        Session::put('clientId', $request->id);
+        Session::put('ownerId', $request->owner->id);
 
+        $propertyList=Client::all()->Property->where('client_id','ownerId');
+
+
+
+        return view('addAgreement');
+    }
 
 
     /**

@@ -58,7 +58,7 @@ class ClientController extends Controller {
         ));
         $person->save();
         Session::put('ClientInsertedId', $person->id);
-        Session::put('AddRole', 'client');
+        Session::put('AddRole', 'tenant');
         Session::flash('flash_message', 'Client successfully added! Need to add the Address');
         Session::put('addressMessage', 'New Address for Tenant');
 

@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model {
 
+
     protected $fillable = ['client_id'];
 	public function client(){
         return $this->belongsTo('App\Client');

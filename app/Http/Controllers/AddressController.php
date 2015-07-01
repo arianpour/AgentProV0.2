@@ -50,7 +50,14 @@ class AddressController extends Controller {
             'country'=>$request->country,
         ));
         switch(Session::get('AddRole')){
-            case "client":
+            case "tenant":
+                $client= Client::find(Session::get('ClientInsertedId'));
+                $client->addresses()->save($address);
+                Session::flash('flash_message', 'Address successfully added! ');
+                return redirect()->action('ClientController@index');
+
+                break;
+            case "owner":
                 $client= Client::find(Session::get('ClientInsertedId'));
                 $client->addresses()->save($address);
                 Session::flash('flash_message', 'Address successfully added! ');
@@ -63,7 +70,6 @@ class AddressController extends Controller {
 
                 break;
         }
-        Session::flash('flash_message', 'Address successfully added! ');
 
         return redirect('home');	}
 
