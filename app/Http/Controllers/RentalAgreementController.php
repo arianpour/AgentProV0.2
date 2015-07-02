@@ -35,8 +35,10 @@ class RentalAgreementController extends Controller {
 	public function create()
 	{
 
-        $clientList=User::findOrFail(Auth::user()->id)->client->where('role','tenant');
-        $ownerList=User::findOrFail(Auth::user()->id)->client->where('role','owner');
+        $clientList=User::findOrFail(Auth::user()->id)
+            ->client->where('role','tenant')->lists('name','id');
+        $ownerList=User::findOrFail(Auth::user()->id)
+            ->client->where('role','owner')->lists('name','id');
 
 
 		return view('addAgreementStepOne',compact('clientList','ownerList'));
@@ -50,15 +52,20 @@ class RentalAgreementController extends Controller {
      */
     public function stepOne(StoreAddRAgreementStepOnePostRequest $request)
     {
-        //TODO: have to complete
-        Session::put('clientId', $request->id);
-        Session::put('ownerId', $request->owner->id);
 
-        $propertyList=Client::all()->Property->where('client_id','ownerId');
+        Session::put('client_id', $request->tenant);
+        Session::put('owner_id', $request->owner);
+
+        $propertyList=Client::findOrFail($request->owner)->property()->get();
 
 
+        $adds=array();
+        foreach($propertyList as $property){
 
-        return view('addAgreement');
+            array_push($adds,$property->addresses()->get()->lists('unit_street','id'));
+        }
+
+        return view('addAgreement',compact('adds'));
     }
 
 

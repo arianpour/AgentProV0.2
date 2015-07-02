@@ -20,4 +20,9 @@ class Address extends Model {
     {
         return $this->morphTo();
     }
+
+    public function getUnitStreetAttribute(){
+        return $this->attributes['unit'].', '.$this->attributes['street'];
+
+    }
 }

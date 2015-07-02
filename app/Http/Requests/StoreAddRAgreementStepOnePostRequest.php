@@ -22,8 +22,8 @@ class StoreAddRAgreementStepOnePostRequest extends Request {
 	public function rules()
 	{
 		return [
-			'client_id'=>'required',
-            'owner_id'=>'required'
+			'tenant'=>'required',
+            'owner'=>'required'
 		];
 	}
 

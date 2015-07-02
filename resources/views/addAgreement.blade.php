@@ -14,12 +14,12 @@
 		</div>
 	@endif
 
-
+<!--TODO : start fromhere-->
 
 	{!! Form::open(['action' => 'RentalAgreementController@store', 'method' => 'post']) !!}
 
-	{!! Form::label('tenant', 'Tenant', ['class' => 'control-label']) !!}
-	{!! Form::select('tenant', {{$clientList->firstname}} , 1 , ['class' => 'field']) !!}
+	{!! Form::label('property', 'Property Address', ['class' => 'control-label']) !!}
+	{!! Form::select('property', $adds , null , ['class' => 'field']) !!}
 
 	{!! Form::label('dateOfAgreement', 'Date Of Agreement', ['class' => 'control-label']) !!}
 	{!! Form::input('dateOfAgreement', 'date', null, ['class' => 'form-control', 'placeholder' => 'Date']) !!}

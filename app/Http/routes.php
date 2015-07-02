@@ -59,12 +59,14 @@ Route::group(['middleware' => 'auth'], function () {
  *
  * */
 Route::group(['middleware' => 'auth'], function () {
+
     Route::get('owner'              , 'OwnerController@index');
     Route::get('owner/create'       , 'OwnerController@create');
     Route::post('owner/store'   , 'OwnerController@store');
     Route::get('owner/edit/{id}'     , 'OwnerController@edit');
     Route::post('owner/update/{id}'  , 'OwnerController@update');
     Route::get('owner/delete/{id}', 'OwnerController@destroy');
+    Route::get('owner/getbank/{id}','RentalAgreementController@OwnerBank');
     Route::get('owner/{id}'     , 'OwnerController@show');
 
 });
@@ -78,6 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('rentalagreement'            , 'RentalAgreementController@index');
     Route::get('rentalagreement/create'     , 'RentalAgreementController@create');
+    Route::post('rentalagreement/stepOne'   , 'RentalAgreementController@stepOne');
     Route::post('rentalagreement/store'     , 'RentalAgreementController@store');
     Route::get('rentalagreement/edit'       , 'RentalAgreementController@edit');
     Route::post('rentalagreement/update'    , 'RentalAgreementController@update');
@@ -119,6 +122,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('address/update/{id}'   , 'AddressController@update');
     Route::get('address/destroy/{id}'   , 'AddressController@destroy');
     Route::get('address/{id}'           , 'AddressController@show');
+
+});
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('test' , 'testController@index');
+    Route::post('test/show','testController@show');
+
 
 });
 
